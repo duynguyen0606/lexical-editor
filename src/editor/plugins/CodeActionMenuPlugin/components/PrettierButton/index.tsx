@@ -85,7 +85,7 @@ export function PrettierButton({ lang, editor, getCodeDOMNode }: Props) {
     try {
       const format = await loadPrettierFormat();
       const options = getPrettierOptions(lang);
-      options.plugins = [(await loadPrettierParserByLang(lang)) as Plugin<any>];
+      options.plugins = [(await loadPrettierParserByLang(lang)) as any];
 
       if (!codeDOMNode) {
         return;
@@ -97,7 +97,7 @@ export function PrettierButton({ lang, editor, getCodeDOMNode }: Props) {
         if ($isCodeNode(codeNode)) {
           const content = codeNode.getTextContent();
 
-          let parsed = "";
+          let parsed: any = "";
 
           try {
             parsed = format(content, options);
